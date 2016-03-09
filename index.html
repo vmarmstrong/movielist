@@ -1,0 +1,58 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="readingList" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="readingList" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="readingList" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="MovieList"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Angular</title>
+	
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="searchbar">
+			<p>Search <input type="text" placeholder="title, name, genre..." ng-model="searchBox"></p>
+		</div>
+		<hr>
+		
+		<div class="row" ng-controller="MovieListController as movieListCtrl">
+			<ul class="list-unstyled col-sm-12">
+				<li class="movie row" ng-repeat="movie in movieListCtrl.movies | filter: searchBox | orderBy: 'sortBy'">
+					<movie-poster></movie-poster>
+					<div class="col-sm-9">
+						<movie-genres></movie-genres>
+						<div class="clearfix"></div>
+						<div class="movietitle">
+							<h3><a href="http://www.imdb.com/title/{{movie.imdbID}}" target="_blank">{{movie.title}}</a></h3>
+							<cite class="text-muted">( {{movie.year}} )</cite>
+						</div>
+						<div class="clearfix"></div>
+						<dl class="dl-horizontal">
+							<dt>Director:</dt>
+							<dd>{{movie.director}}</dd>
+							<dt>Staring:</dt>
+							<dd>{{movie.actors}}</dd>
+							<dt>Rating:</dt>
+							<dd>{{movie.rated}}</dd>
+							<dt>Runtime:</dt>
+							<dd>{{movie.runtimeMins}} minutes</dd>
+							<dt>Awards:</dt>
+							<dd>{{movie.awards}}</dd>
+							<dt>Plot:</dt>
+							<dd>{{movie.plot}}</dd>
+						</dl>
+					</div>
+				</li>
+			</ul>
+		</div>
+	
+	</div>
+</body>
+</html>

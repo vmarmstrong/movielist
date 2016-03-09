@@ -1,0 +1,26 @@
+<h1>super movie list</h1>
+
+<div class="row" ng-controller="MovieListController as movieListCtrl">
+
+  <button class="btn btn-default" ng-click="movieListCtrl.showForm = !movieListCtrl.showForm">{{movieListCtrl.showForm ? "Cancel" : "Create a Review"}}</button>
+  <hr />
+  <review-form change-review-form="movieListCtrl.changeReviewForm" books="movieListCtrl.movies" genres="movieListCtrl.genres" ng-show="movieListCtrl.showForm"></review-form>
+  <hr />
+
+  <ul class="list-unstyled col-sm-8">
+    <li class="movie row" ng-repeat="movie in movieListCtrl.movies">
+      <movie-poster></movie-poster>
+      <div class="col-sm-9">
+        <h3><img src="{{movie.poster}}"
+            >{{movie.title}}</a></h3>
+
+        <cite class="text-muted">{{movie.year}}</cite>
+
+        <p>{{movie.imdbRating}}</p>
+
+        <movie-genres genres="movie.genres"></movie-genres>
+
+      </div>
+    </li>
+  </ul>
+</div>
